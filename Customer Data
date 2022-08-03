@@ -1,0 +1,37 @@
+#In this SQL, I am querying a database with multiple tables in it to quantify statistics about customer and order data. 
+
+select * from bit_db.customers
+limit 20;
+select * from bit_db.JanSales limit 20;
+
+select count(jansales.orderID)
+from bit_db.JanSales
+
+where jansales.product = 'iPhone'
+;
+
+select customers.acctnum
+from customers
+join febsales
+on customers.order_id = febsales.orderid 
+;
+
+
+select distinct jansales.product, MIN(jansales.price)
+from jansales;
+
+
+select SUM(quantity)*price as revenue, product
+from jansales
+group by product;
+
+select product, sum(quantity)*price as rev
+from febsales
+where location = '548 Lincoln St, Seattle, WA 98101'
+group by product;
+
+select count(customers.acctnum), avg(quantity*price)
+from febsales
+left join customers
+on febsales.orderid = customers.order_id
+where febsales.quantity >2;
