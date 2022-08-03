@@ -1,0 +1,36 @@
+CREATE TABLE Artists (
+id INTEGER primary key,
+name TEXT,
+age INTEGER,
+genre TEXT,
+state TEXT);
+
+Insert into artists (id, name, age, genre, state) values (1, 'Billie Eilish', 20, 'pop', 'California'),
+(2, 'Taylor Swift', 32, 'pop', 'Pennsylvania'),
+(3, 'Harry Styles', 28, 'pop', 'England'),
+(4, 'Drake', 35, 'rap', 'Canada'),
+(5, 'Luke Bryan', 46, 'country', 'Georgia'),
+(6, 'Doja Cat', 26, 'Hip Hop', 'California'),
+(7, 'Ariana Grande', 29, 'pop', 'Florida'),
+(8, 'Kelly Clarkson', 40, 'country', 'Texas');
+
+CREATE TABLE Hobbies (
+id INTEGER,
+name text,
+animal text);
+
+INSERT INTO Hobbies values 
+(1, 'Dance', 'Dogs'),
+(2, 'Baking', 'Cat'),
+(3, 'Cardio', 'Dogs'),
+(4, 'Acting', 'Dogs'),
+(5, 'Hunting', 'Cows'),
+(6, 'Hiking', 'Cat'),
+(7, 'Dance', 'Dogs'),
+(8, 'Golf', 'Dogs')
+;
+
+select artists.name, artists.genre, hobbies.name
+from artists
+left outer join hobbies
+on artists.id = hobbies.id;
