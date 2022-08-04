@@ -35,3 +35,43 @@ from febsales
 left join customers
 on febsales.orderid = customers.order_id
 where febsales.quantity >2;
+
+//Which locations in New York received at least 3 orders in January, and how many orders did they each receive?//
+
+select distinct location, Count(orderid)
+from jansales
+where location like '%NY%'
+group by location
+having count(orderid) >=3 ;
+
+//How many of each type of headphone were sold in February?//
+
+select product, sum(quantity)
+from febsales
+where product like '%headphone%'
+group by product
+;
+
+//What was the average amount spent per account in February? //
+
+select sum(febsales.price*febsales.Quantity)/count(customers.acctnum)
+from febsales
+left join customers
+on febsales.orderID = customers.order_id
+;
+
+//What was the average quantity of products purchased per account in February?//
+
+select sum(febsales.quantity)/count(customers.acctnum)
+from febsales
+join customers
+on febsales.orderID = customers.order_id;
+
+\\*Which product brought in the most revenue in January and how much revenue did it bring in total?*//
+
+select product, sum(quantity*price)
+from jansales
+group by product
+order by sum(quantity*price) desc
+limit 1;
+
