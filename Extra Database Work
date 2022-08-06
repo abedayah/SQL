@@ -1,0 +1,86 @@
+--(1)
+--SELECT *
+--from chinook.customers
+--where customers.country != 'USA';
+
+--(2)
+--SELECT *
+--from chinook.customers
+--where customers.country = 'Brazil';
+
+--(3)
+--select customers.FirstName, customers.LastName, invoices.InvoiceId, invoices.BillingCountry, invoices.InvoiceDate
+--from customers
+--join invoices
+--on customers.CustomerId = invoices.CustomerId
+--where country = 'Brazil';
+
+--(4)
+select * from employees
+where title = 'Sales Support Agent';
+
+--(5)
+--select distinct(invoices.BillingCountry)
+--from invoices;
+
+--(6)
+--select employees.FirstName, employees.LastName, employees.Title, invoices.InvoiceId
+--from employees
+--join invoices
+--on employees.EmployeeId = invoices.CustomerId 
+--where title like '%Sales%';
+
+--(7)
+--select invoices.Total, customers.Country, customers.FirstName, employees.FirstName
+--from employees
+--join customers on customers.CustomerId
+--join invoices on invoices.InvoiceId;
+
+--(8)
+--select count(invoices.InvoiceDate) from invoices
+--where invoices.InvoiceDate like '2009%';
+
+--(9)
+--select invoices.InvoiceDate, SUM((invoice_items.Quantity * invoice_items.UnitPrice))
+--from invoices
+--join invoice_items
+--on invoices.InvoiceId = invoice_items.InvoiceId
+--where invoices.InvoiceDate like '2009%';
+
+--(10)
+--SELECT tracks.Name, invoice_items.InvoiceLineId 
+--from tracks 
+--join invoice_items on tracks.TrackId = invoice_items.TrackId;
+
+--(11)
+--select tracks.Name as 'Track Name', artists.Name as 'Artists', invoice_items.InvoiceLineId
+--from tracks
+--join invoice_items on invoice_items.TrackId = tracks.TrackId
+--join artists on artists.ArtistId = tracks.AlbumId   ;
+
+--(12)
+--select t.Name as 'Track Name', media_types.Name as 'Type', a.Title as 'Album Title', genres.Name as 'Genre'
+--from tracks t
+--join albums a on a.AlbumId = t.AlbumId
+--join media_types on media_types.MediaTypeId = t.MediaTypeId
+--join genres on genres.GenreId = t.GenreId;
+
+--(13)
+--select employees.FirstName, employees.Title, Round (Sum(invoices.Total), 2)
+--from employees
+--join invoices on invoices.InvoiceId = employees.EmployeeId
+--where employees.Title like '%sales%'
+--group by employees.FirstName;
+
+-- (14)
+--SELECT emp.FirstName, emp.LastName,
+--ROUND(SUM(Inv.Total), 2) as 'Total Sales' 
+--FROM chinook.Employees emp
+--JOIN chinook.Customers cust 
+--ON cust.SupportRepId = emp.EmployeeId
+--JOIN chinook.Invoices Inv 
+--ON Inv.CustomerId = cust.CustomerId
+--WHERE emp.Title = 'Sales Support Agent' 
+--AND Inv.InvoiceDate LIKE '2009%' 
+--GROUP BY emp.FirstName
+--ORDER BY (round(sum(Inv.Total), 2))  DESC LIMIT 1;
